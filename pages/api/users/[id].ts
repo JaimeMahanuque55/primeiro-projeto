@@ -46,10 +46,36 @@
 ////////////// PRISMA SELECIONANDO DADOS 2 ///////////////////
 
 
+// import { NextApiHandler } from "next";
+// import prisma from "../../../libs/prisma";
+
+// const handler: NextApiHandler = async (req, res) => {
+//   const { id } = req.query;
+
+//   const user = await prisma.user.findFirst({
+//     where: {
+//       id: parseInt(id as string),
+//       active: true
+//     }
+//   });
+
+//   if (user) {
+//     res.json({ status: true, user: user });
+//     return;
+//   }
+//   res.json({ error: 'User not Found' });
+// }
+
+// export default handler;
+
+
+///////////// PRISMA:ALTERANDO DADOS 1 /////////////////
+
 import { NextApiHandler } from "next";
 import prisma from "../../../libs/prisma";
 
-const handler: NextApiHandler = async (req, res) => {
+// Reading user info
+const handlerGet: NextApiHandler = async (req, res) => {
   const { id } = req.query;
 
   const user = await prisma.user.findFirst({
@@ -64,6 +90,42 @@ const handler: NextApiHandler = async (req, res) => {
     return;
   }
   res.json({ error: 'User not Found' });
+}
+
+const handlerPut: NextApiHandler = async (req, res) => {
+  const { name, active } = req.body;
+  const { id } = req.query;
+
+  const updatedUser = await prisma.user.update({
+    where: {
+      id: parseInt(id as string)
+    },
+    data: {
+      name: name,
+      active: active === 'true' ? true : false
+    }
+  });
+
+  if (updatedUser) {
+    res.json({ status: true, user: updatedUser });
+    return;
+  }
+
+  res.json({ error: 'Nao foi possivel alterar este usuario.' });
+
+}
+
+
+const handler: NextApiHandler = async (req, res) => {
+  switch (req.method) {
+    case 'GET':
+      handlerGet(req, res);
+      break;
+
+    case 'PUT':
+      handlerPut(req, res);
+      break;
+  }
 }
 
 export default handler;
