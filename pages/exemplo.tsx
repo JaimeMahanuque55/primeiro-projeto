@@ -2,7 +2,9 @@
 const Exemplo = () => {
 
   return (
-    <div>Pagina de exemplo</div>
+    <div>Pagina de exemplo de nov</div>
+
+
   );
 }
 
