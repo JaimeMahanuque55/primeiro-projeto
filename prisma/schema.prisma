@@ -1,0 +1,134 @@
+// // This is your Prisma schema file,
+// // learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// generator client {
+//   provider = "prisma-client-js"
+// }
+
+// datasource db {
+//   provider = "postgresql"
+//   url      = env("DATABASE_URL")
+// }
+
+// model User {
+//   id        Int      @id @default(autoincrement())
+//   name      String
+//   email     String   @unique
+//   createdAt DateTime @default(now())
+
+//   @@map("users") //nome que aparece no banco de dados
+// }
+
+/////////////// PRISMA SCHEMA: TIPOS DE DADOS //////////////////////
+
+// generator client {
+//   provider = "prisma-client-js"
+// }
+
+// datasource db {
+//   provider = "postgresql"
+//   url      = env("DATABASE_URL")
+// }
+
+// model User {
+//   id        Int      @id @default(autoincrement())
+//   name      String
+//   email     String   @unique
+//   createdAt DateTime @default(now())
+//   active    Boolean  @default(true)
+//   role      Role     @default(USER)
+
+//   @@map("users")
+// }
+
+// // enum sao valores fixos
+// enum Role {
+//   USER
+//   ADMIN
+// }
+
+// model Photo {
+//   id     Int     @id @default(autoincrement())
+//   url    String
+//   legend String?
+
+//   @@map("photos")
+// }
+
+////////////////// PRISMA SCHEMA: RELACIONAMENTOS ////////////////
+
+// generator client {
+//   provider = "prisma-client-js"
+// }
+
+// datasource db {
+//   provider = "postgresql"
+//   url      = env("DATABASE_URL")
+// }
+
+// model User {
+//   id        Int      @id @default(autoincrement())
+//   name      String
+//   email     String   @unique
+//   createdAt DateTime @default(now())
+//   active    Boolean  @default(true)
+//   role      Role     @default(USER)
+//   photos    Photo[]
+
+//   @@map("users")
+// }
+
+// model Photo {
+//   id     Int     @id @default(autoincrement())
+//   url    String
+//   legend String?
+
+//   user   User @relation(fields: [userId], references: [id])
+//   userId Int
+
+//   @@map("photos")
+// }
+
+// enum Role {
+//   USER
+//   ADMIN
+// }
+
+//////////////////// PRISMA CLIENT: INTRODUCAO ///////////////////
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String   @unique
+  createdAt DateTime @default(now())
+  active    Boolean  @default(true)
+  role      Role     @default(USER)
+  photos    Photo[]
+
+  @@map("users")
+}
+
+model Photo {
+  id     Int     @id @default(autoincrement())
+  url    String
+  legend String?
+
+  user   User @relation(fields: [userId], references: [id])
+  userId Int
+
+  @@map("photos")
+}
+
+enum Role {
+  USER
+  ADMIN
+}

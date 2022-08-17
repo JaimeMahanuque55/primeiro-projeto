@@ -1,0 +1,10 @@
+CSR = Client-side Rendering
+ - Faz operacoes no navegador do usuario.
+
+SSR = Server-side Rendering
+ - Faz o processamento no servidor e manda o resultado final para o usuario; ou
+ - Pode fazer mix entre CSR e SSR;
+
+SSG = Static-site Generation
+ - Sao paginas que nao se faz nenhum processamento para serem geradas porque ja vem no cache do site;
+ 

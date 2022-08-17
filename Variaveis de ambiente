@@ -1,0 +1,6 @@
+Por prioridade
+
+.env.local - Para coisas locais e amis priorizado
+.env.development
+.env.production
+.env - todo tipo de dado
