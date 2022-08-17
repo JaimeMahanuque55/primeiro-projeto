@@ -190,10 +190,10 @@ import prisma from "../../../libs/prisma";
 const handlerGet: NextApiHandler = async (req, res) => {
   const users = await prisma.user.findMany({
     where: {
+      // likeCount: { gt: 10 } //gt = greater than, gte = greater than or equal, lt= lower than, lte = lower than or equal
       active: true
     }
   });
-
   res.json({ status: true, users });
 }
 
