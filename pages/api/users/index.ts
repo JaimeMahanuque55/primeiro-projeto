@@ -405,8 +405,77 @@
 
 ///////////// Prisma: Paginacao /////////////////////
 
+// import { NextApiHandler } from "next";
+// import { Users } from "../../../utils/users";
+// import prisma from "../../../libs/prisma";
+
+// // Getting all users
+// const handlerGet: NextApiHandler = async (req, res) => {
+//   const { page } = req.query;
+
+//   // Items per page
+//   let take = 3;
+
+//   // offset of items
+//   let skip = 0;
+//   if (page) {
+//     skip = (parseInt(page as string) - 1) * take;
+//   }
+
+
+//   const users = await prisma.user.findMany({
+//     skip: skip, //Pula os primeiros itens
+//     take: take, // Pega os itens seguintes
+//     where: {
+//       active: true
+//     },
+//     select: {
+//       id: true,
+//       name: true,
+//       email: true
+//     },
+//     orderBy: [
+//       { id: 'asc' }
+//     ]
+//   });
+//   res.json({ status: true, users });
+// }
+
+// // Inserting new user 
+// const handlerPost: NextApiHandler = async (req, res) => {
+//   const { name, email } = req.body;
+
+//   const newUser = await prisma.user.create({
+//     data: {
+//       name: name,
+//       email: email,
+//     }
+//   });
+
+//   res.status(201).json({ status: true, user: newUser });
+
+// }
+
+
+// const handler: NextApiHandler = (req, res) => {
+
+//   switch (req.method) {
+//     case 'GET':
+//       handlerGet(req, res);
+//       break;
+//     case 'POST':
+//       handlerPost(req, res);
+//       break;
+
+//   }
+
+// }
+
+// export default handler;
+
+//////////////// PRISMA: LIDANDO COM ERROS ////////////////
+
 import { NextApiHandler } from "next";
-import { Users } from "../../../utils/users";
 import prisma from "../../../libs/prisma";
 
 // Getting all users
@@ -450,9 +519,15 @@ const handlerPost: NextApiHandler = async (req, res) => {
       name: name,
       email: email,
     }
+  }).catch(() => {
+    res.json({ error: 'O usuario ja existe.' })
   });
 
-  res.status(201).json({ status: true, user: newUser });
+  if (newUser) {
+    res.status(201).json({ status: true, user: newUser });
+  }
+
+
 
 }
 
