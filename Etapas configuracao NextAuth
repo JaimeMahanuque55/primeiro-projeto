@@ -1,0 +1,4 @@
+1. Configurar o .env
+2. Configurar o _app.tsx
+3. Criar a rota de auth
+4. Adicionar os providers
