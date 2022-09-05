@@ -564,7 +564,7 @@ const handlerGet: NextApiHandler = async (req, res) => {
 const handlerPost: NextApiHandler = async (req, res) => {
   const { name, email } = req.body;
 
-  const newUser = await api.addUsers(name, email).catch(() => {
+  const newUser = await api.addUser(name, email).catch(() => {
     res.json({ error: 'O usuario ja existe.' })
   });
 
