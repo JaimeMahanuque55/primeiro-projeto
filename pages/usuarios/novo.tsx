@@ -8,6 +8,7 @@ import { Layout } from "../../components/Layout";
 import styles from '../../styles/UsuariosNovo.module.css';
 import api from "../../libs/api";
 import { User } from "../../types/User";
+import axios from "axios";
 
 
 
@@ -22,21 +23,16 @@ const UsuariosNovo = () => {
 
   const handleSaveForm = async () => {
     if (nameInput && emailInput) {
-      const req = await fetch(`/api/users`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          name: nameInput,
-          email: emailInput
-        })
+
+      const json = await axios.post('/api/users', {
+        name: nameInput,
+        email: emailInput
       });
-      const json = await req.json();
-      if (json.status) {
+
+      if (json.data.status) {
         router.push('/usuarios')
       } else {
-        alert(json.error)
+        alert(json.data.error)
       }
     }
   }
