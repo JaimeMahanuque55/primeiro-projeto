@@ -1,0 +1,17 @@
+
+Processo de login 
+
+Autenticacao
+- Autorizacao
+
+SISTEMA DE LOGIN
+- FRONTEND
+-- Criar o formulario
+-- Pegar os dados de algum lugar (ex: facebook, google, etc)
+
+- BACKEND
+-- Validar os dados
+-- Fazer a autorizacao
+
+
+
