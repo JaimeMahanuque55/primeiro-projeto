@@ -303,13 +303,13 @@
 ////////////// Login: Resolvendo problema dos dados 1 ///////////////
 
 
-import type { NextPage } from 'next'
-import Head from 'next/head'
-import Image from 'next/image'
-import { Layout } from '../components/Layout'
-import styles from '../styles/Home.module.css'
+import type { NextPage } from 'next';
+import Head from 'next/head';
+import Image from 'next/image';
+import { Layout } from '../components/Layout';
+import styles from '../styles/Home.module.css';
 import GuyImage from '../public/guy2.jpg';
-import { signIn, signOut, useSession } from 'next-auth/react'
+import { signIn, signOut, useSession } from 'next-auth/react';
 
 const Home: NextPage = () => {
   const { data: session } = useSession();
