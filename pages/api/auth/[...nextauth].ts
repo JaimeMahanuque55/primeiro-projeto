@@ -84,6 +84,59 @@
 /////////// Login: Resolvendo problema dos dados 2 ////////////
 
 
+// import NextAuth, { NextAuthOptions } from 'next-auth';
+// import CredentialsProvider from 'next-auth/providers/credentials';
+// import api from '../../../libs/api';
+// import { AuthUser } from '../../../types/AuthUser';
+
+
+// export const authOptions: NextAuthOptions = {
+//   secret: process.env.NEXTAUTH_SECRET,
+//   providers: [
+//     CredentialsProvider({
+//       id: 'credentials', // pode usar o nome que quiser
+//       credentials: {
+//         email: { label: 'E-mail', type: 'text' },
+//         password: { label: 'Senha', type: 'password' }
+//       },
+//       authorize: async (credentials, req) => { // funcao responsavel por autorizar o login
+//         if (credentials && credentials.email && credentials.password) {
+//           const user = await api.getUserFromEmail(credentials.email);
+//           if (user) {
+
+//             return {
+//               id: user.id,
+//               name: user.name,
+//               email: user.email,
+//               role: user.role
+//             }
+//           }
+//         }
+
+//         return null;
+//       }
+//     })
+//   ],
+//   callbacks: {
+//     jwt: async ({ token, user }) => {
+//       if (user) {
+//         token.user = user;
+//       }
+//       return token;
+//     },
+//     session: async ({ session, token }) => {
+//       if (token) {
+//         session.user = token.user as AuthUser;
+//       }
+//       return session;
+//     }
+//   }
+// }
+
+// export default NextAuth(authOptions);
+
+///////////// LOGIN: Criando o proprio form /////////////////
+
 import NextAuth, { NextAuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import api from '../../../libs/api';
@@ -130,6 +183,9 @@ export const authOptions: NextAuthOptions = {
       }
       return session;
     }
+  },
+  pages: {
+    signIn: '/login'
   }
 }
 
