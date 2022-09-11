@@ -310,9 +310,12 @@ import { Layout } from '../components/Layout';
 import styles from '../styles/Home.module.css';
 import GuyImage from '../public/guy2.jpg';
 import { signIn, signOut, useSession } from 'next-auth/react';
+import { useRouter } from 'next/router';
 
 const Home: NextPage = () => {
   const { data: session } = useSession();
+
+  const router = useRouter();
 
   if (session) {
     console.log('user', session.user);
@@ -350,6 +353,10 @@ const Home: NextPage = () => {
         </Head>
 
         <main className={styles.main}>
+
+          Linguagem escolhiada: {router.locale}
+
+
 
           {!session &&
             <button onClick={() => signIn()}>Fazer Login</button>
