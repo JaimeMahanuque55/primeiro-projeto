@@ -1,0 +1,11 @@
+Internacionalizacao = i18n
+
+Etapas
+
+1.Detectar a linguagem a ser exibida.
+- Por IP
+- Cookie
+- Perguntar ao usuario
+
+2. Exibir a aplicacao de acordo com a linguagem especificada.
+
