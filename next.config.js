@@ -47,6 +47,44 @@
 
 /////////// Como criar rotas internacionais ///////////
 
+// /** @type {import('next').NextConfig} */
+// const nextConfig = {
+//   reactStrictMode: true,
+//   swcMinify: true,
+//   images: {
+//     domains: ['www.google.com.br']
+//   },
+//   headers: async () => {
+//     return [
+//       {
+//         source: '/api/:path*',
+//         headers: [
+//           {key: 'Access-Control-Allow-Origin', value: '*' }, // colocando o * no value libera acesso da api para todos sites da internet
+//           { key: 'Access-Control-Allow-Methods', value: '*' } // Libera os methods que podem ser acessados
+//         ]
+//       }
+//     ];
+//   },
+//   i18n: {
+//     locales: ['en', 'pt'],
+//     defaultLocale: 'en',
+//     localeDetection: false
+//     // Para dominios diferentes
+//     // domains: [
+//     //   { domain: 'meusite.com', defaultLocale: 'en' },
+//     //   { domain: 'meusite.com.br', defaultLocale: 'pt' },
+//     //   { domain: 'meusite.fr', defaultLocale: 'fr' }
+//     // ]
+//   }
+  
+// }
+
+// module.exports = nextConfig
+
+////////// Usando i18n para multi-linguagem 1 /////////////
+
+const { i18n } = require('/next-i18next.config');
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
@@ -65,18 +103,7 @@ const nextConfig = {
       }
     ];
   },
-  i18n: {
-    locales: ['en', 'pt'],
-    defaultLocale: 'en',
-    localeDetection: false
-    // Para dominios diferentes
-    // domains: [
-    //   { domain: 'meusite.com', defaultLocale: 'en' },
-    //   { domain: 'meusite.com.br', defaultLocale: 'pt' },
-    //   { domain: 'meusite.fr', defaultLocale: 'fr' }
-    // ]
-  }
-  
+  i18n
 }
 
 module.exports = nextConfig
