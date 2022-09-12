@@ -83,7 +83,7 @@
 
 ////////// Usando i18n para multi-linguagem 1 /////////////
 
-const { i18n } = require('/next-i18next.config');
+const { i18n }  = require('./next-i18next.config');
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -101,7 +101,7 @@ const nextConfig = {
           { key: 'Access-Control-Allow-Methods', value: '*' } // Libera os methods que podem ser acessados
         ]
       }
-    ];
+    ]
   },
   i18n
 }
