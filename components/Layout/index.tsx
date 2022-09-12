@@ -49,6 +49,54 @@
 ////////////// Como mudar o Locale corretamente /////////////
 
 
+// import Link from 'next/link';
+// import { useRouter } from 'next/router';
+// import { ReactElement } from 'react';
+// import NavBar from '../NavBar';
+// import styles from './Layout.module.css';
+
+// type Props = {
+//   children: ReactElement;
+// }
+
+// export const Layout = ({ children }: Props) => {
+//   const router = useRouter();
+
+//   // router.push('/sobre', '/sobre', { locale: 'pt' }) //Forma mais recomendada
+//   // router.push('/pt/sobre'); // Forma mais facil
+
+//   return (
+
+//     <div className={styles.container}>
+//       <header className={styles.header}>
+//         <h1>Meu Projecto 2.0</h1>
+
+//         <ul>
+//           {router.locales?.map((item, index) => (
+//             <li key={index}>
+//               <Link
+//                 href={'/'}
+//                 locale={item}
+//               >{item}</Link>
+//             </li>
+//           ))}
+//         </ul>
+
+//         Linguagem escolhida: {router.locale}
+
+//       </header>
+
+//       <NavBar />
+
+//       <main>{children}</main>
+//       <footer className={styles.footer}>Todos os direitos reservados.</footer>
+//     </div>
+//   );
+// }
+
+/////////////// Usando mais de um NS no i18n 1 //////////
+
+import { useTranslation } from 'next-i18next';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { ReactElement } from 'react';
@@ -61,15 +109,13 @@ type Props = {
 
 export const Layout = ({ children }: Props) => {
   const router = useRouter();
-
-  // router.push('/sobre', '/sobre', { locale: 'pt' }) //Forma mais recomendada
-  // router.push('/pt/sobre'); // Forma mais facil
+  const { t } = useTranslation('common');
 
   return (
 
     <div className={styles.container}>
       <header className={styles.header}>
-        <h1>Meu Projecto 2.0</h1>
+        <h1>{t('title')}</h1>
 
         <ul>
           {router.locales?.map((item, index) => (
@@ -81,15 +127,14 @@ export const Layout = ({ children }: Props) => {
             </li>
           ))}
         </ul>
-
-        Linguagem escolhida: {router.locale}
+        {t('choosen_language', { lng: router.locale })}
 
       </header>
 
       <NavBar />
 
       <main>{children}</main>
-      <footer className={styles.footer}>Todos os direitos reservados.</footer>
+      <footer className={styles.footer}>{t('footer.rights')}</footer>
     </div>
   );
 }
