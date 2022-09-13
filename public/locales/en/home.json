@@ -1,0 +1,6 @@
+{
+  "loginbutton": "Do Login",
+  "logoutbutton": "Logout",
+  "hello_user": "Hello, {{name}}.",
+  "welcome": "Welcome home"
+}

@@ -1,0 +1,6 @@
+{
+  "pagetitle": "Sobre",
+  "documenttitle": "Pagina Sobre ({{count}})",
+  "my_name_is": "Meu nome e {{name}}",
+  "addbutton": "Aumentar"
+}

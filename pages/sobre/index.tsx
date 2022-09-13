@@ -517,12 +517,90 @@
 
 //////////////// USANDO NEXT/HEAD //////////////
 
+// import Link from "next/link";
+// import Head from 'next/head';
+// import { useState } from "react";
+// import { Layout } from "../../components/Layout";
+// import { MyButton } from '../../components/MyButton';
+// import styles from '../../styles/Sobre.module.css';
+
+
+
+
+// type Props = {
+//   nome: string;
+// }
+
+
+// const Sobre = ({ nome }: Props) => {
+//   const [contador, setContador] = useState(15);
+
+//   const handleContadorBtn = () => {
+//     setContador(contador + 1);
+//   }
+
+//   return (
+
+//     <Layout>
+//       <div>
+//         <Head>
+//           <title>Sobre</title>
+//         </Head>
+//         <h1 className={styles.sobreTitle}>Pagina sobre ({contador})</h1>
+
+//         Meu nome e {nome}
+//         <ul className="lista">
+//           <li><Link
+//             href={{
+//               pathname: '/sobre/[slug]',
+//               query: { slug: 'Jaime' }
+//             }}
+//             replace
+//             scroll={false}
+//           >Pagina Jaime</Link></li>
+//           <li><Link href="/sobre/joao">Pagina Joao</Link></li>
+//           <li><Link href="/exemplo">Pagina exemplo</Link></li>
+//         </ul>
+
+//         <MyButton label="Aumentar" onClick={handleContadorBtn} />
+
+//         <style jsx>
+//           {`
+//         .lista {
+//           background-color: blue;
+//           color: white;
+//         }
+//         .lista li {
+//           color: white;
+//           font-size: 40px
+//         }
+//       `}
+//         </style>
+//       </div>
+//     </Layout>
+//   )
+// }
+// export const getStaticProps = () => {
+
+//   return {
+//     props: {
+//       nome: process.env.NOME
+//     }
+//   }
+// }
+// export default Sobre;
+
+/////////// Usando mais de um NS no i18n 2 /////////
+
 import Link from "next/link";
 import Head from 'next/head';
 import { useState } from "react";
 import { Layout } from "../../components/Layout";
 import { MyButton } from '../../components/MyButton';
 import styles from '../../styles/Sobre.module.css';
+import { GetStaticProps } from "next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useTranslation } from "next-i18next";
 
 
 
@@ -535,6 +613,9 @@ type Props = {
 const Sobre = ({ nome }: Props) => {
   const [contador, setContador] = useState(15);
 
+  const { t } = useTranslation('common');
+  const { t: tSobre } = useTranslation('sobre');
+
   const handleContadorBtn = () => {
     setContador(contador + 1);
   }
@@ -544,11 +625,11 @@ const Sobre = ({ nome }: Props) => {
     <Layout>
       <div>
         <Head>
-          <title>Sobre</title>
+          <title>{tSobre('pagetitle')}</title>
         </Head>
-        <h1 className={styles.sobreTitle}>Pagina sobre ({contador})</h1>
+        <h1 className={styles.sobreTitle}>{tSobre('documenttitle', { count: contador })}</h1>
 
-        Meu nome e {nome}
+        {tSobre('my_name_is', { name: nome })}
         <ul className="lista">
           <li><Link
             href={{
@@ -562,7 +643,7 @@ const Sobre = ({ nome }: Props) => {
           <li><Link href="/exemplo">Pagina exemplo</Link></li>
         </ul>
 
-        <MyButton label="Aumentar" onClick={handleContadorBtn} />
+        <MyButton label={tSobre('addbutton')} onClick={handleContadorBtn} />
 
         <style jsx>
           {`
@@ -580,12 +661,14 @@ const Sobre = ({ nome }: Props) => {
     </Layout>
   )
 }
-export const getStaticProps = () => {
 
+export const getStaticProps: GetStaticProps = async ({ locale }) => {
   return {
     props: {
+      ...(await serverSideTranslations(locale as string, ['common', 'sobre'])),
       nome: process.env.NOME
     }
   }
 }
+
 export default Sobre;

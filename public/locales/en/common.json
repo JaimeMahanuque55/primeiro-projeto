@@ -1,6 +1,5 @@
 {
   "title": "My 2.0 own project",
-  "welcome": "Welcome to the jungle my homie",
   "choosen_language": "Choosen Language: {{lng}}",
   "footer": {
     "rights": "All rights reserved."

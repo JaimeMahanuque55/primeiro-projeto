@@ -1,6 +1,5 @@
 {
   "title": "Meu Projecto 2.0",
-  "welcome": "Bem vindo(a) a selva",
   "choosen_language": "Linguagem Escolhida: {{lng}}",
   "footer": {
     "rights": "Todos os direitos reservados."
