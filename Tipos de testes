@@ -1,0 +1,11 @@
+- Teste Unitario (Unit Test)
+-- Testa uma unidade do sistema
+exemplo: Uma funcao que soma
+
+- Teste de Integracao (Integration Test) Mais importante
+-- Faz teste de uma funcionalidade
+exemplo: Sistema de login
+
+- Teste end-to-end (e2e, end-2-end)
+-- Testa o sistema como um todo
+-- Simula um usuario usando o sistema
