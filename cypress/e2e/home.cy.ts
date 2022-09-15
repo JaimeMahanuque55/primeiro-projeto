@@ -1,3 +1,4 @@
+export { }
 describe('Home', () => {
   it('should load the page', () => {
     cy.visit('/');
@@ -20,3 +21,5 @@ describe('Home', () => {
     cy.url().should('include', '/api/auth/signin');
   })
 });
+
+////////////// Usando Hooks de Teste no Cypress 1 /////////////
