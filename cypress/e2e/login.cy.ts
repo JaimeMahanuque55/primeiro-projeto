@@ -26,7 +26,7 @@
 // });
 
 //////////// Usando Hooks de Teste no Cypress 2 ////////////
-
+export { }
 describe('Login', () => {
   // before(() => { // Executa antes de todos testes
 
